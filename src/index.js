@@ -5,13 +5,11 @@ import axios from 'axios'
 // COMPONENTS
 import App from './components/app'
 import moment from 'moment'
-// CONSTANTS
-const BTC_UUID = '1' // NW: this will change in v2 API available now
-const BTC_NAME = 'Bitcoin'
-const API_VERSION = '1'
-const PRICE_PERIOD = '30d'
+// CUSTOM CONFIG
+import { config } from './config.mjs'
+const BTC_NAME = config.coin.name
 // NW: See https://developers.coinranking.com/api/documentation for detailed docs
-const API_URL = `https://api.coinranking.com/v${API_VERSION}/public/coin/${BTC_UUID}/history/${PRICE_PERIOD}`
+const API_URL = `https://api.coinranking.com/v${config.api.version}/public/coin/${config.coin.uuid}/history/${config.coin.pricePeriod}`
 const DIRECTION_SYMBOL_UP = 'Up'
 const DIRECTION_SYMBOL_DOWN = 'Down'
 const DIRECTION_SYMBOL_NO_CHANGE = 'Same'
