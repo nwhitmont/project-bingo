@@ -7,6 +7,7 @@ import App from './components/app'
 import moment from 'moment'
 // CONSTANTS
 const BTC_UUID = '1' // NW: this will change in v2 API available now
+const BTC_NAME = 'Bitcoin'
 const API_VERSION = '1'
 const PRICE_PERIOD = '30d'
 // NW: See https://developers.coinranking.com/api/documentation for detailed docs
@@ -94,7 +95,7 @@ axios
   .then(function () {
     // render stuff
     ReactDOM.render(
-      <App coin="Bitcoin" priceData={formattedHistory} />,
+      <App coin={BTC_NAME} priceData={formattedHistory} />,
       document.getElementById('root')
     )
   })
