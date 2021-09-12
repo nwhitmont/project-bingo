@@ -17,9 +17,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <PageTitle coin={this.state.coin} />
-        <br />
+      <div className="App container">
+        <header className="App-header">
+          <PageTitle coin={this.state.coin} />
+        </header>
         <PriceTable coin={this.state.coin} priceData={this.state.priceData} />
       </div>
     )

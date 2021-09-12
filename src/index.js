@@ -22,18 +22,20 @@ const calculatePriceChange = (previousPrice, currentPrice) => {
 
   if (!firstRowSpecialCase) {
     // NW: rows 2-n
-    priceChange = previousPrice - currentPrice
+    priceChange = currentPrice - previousPrice
     trendDirection = Math.sign(priceChange)
   }
 
   switch (trendDirection) {
     case 1:
       trendDirection = config.trend.up
+      break
     case -1:
       trendDirection = config.trend.down
       break
     case 0:
       trendDirection = config.trend.noChange
+      break
     default:
       trendDirection = config.trend.default
       break
