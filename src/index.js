@@ -10,9 +10,6 @@ import { config } from './config.mjs'
 const BTC_NAME = config.coin.name
 // NW: See https://developers.coinranking.com/api/documentation for detailed docs
 const API_URL = `https://api.coinranking.com/v${config.api.version}/public/coin/${config.coin.uuid}/history/${config.api.pricePeriod}`
-const DIRECTION_SYMBOL_UP = 'Up'
-const DIRECTION_SYMBOL_DOWN = 'Down'
-const DIRECTION_SYMBOL_NO_CHANGE = 'Same'
 const NA_SYMBOL = 'n/a'
 // LOCAL VARS
 let priceHistory = []
@@ -31,15 +28,14 @@ const calculatePriceChange = (previousPrice, currentPrice) => {
 
   switch (trendDirection) {
     case 1:
-      trendDirection = DIRECTION_SYMBOL_UP
-      break
+      trendDirection = config.trend.up
     case -1:
-      trendDirection = DIRECTION_SYMBOL_DOWN
+      trendDirection = config.trend.down
       break
     case 0:
-      trendDirection = DIRECTION_SYMBOL_NO_CHANGE
+      trendDirection = config.trend.noChange
     default:
-      trendDirection = '(No Data)'
+      trendDirection = config.trend.default
       break
   }
   if (firstRowSpecialCase) {
@@ -55,7 +51,7 @@ const calculatePriceChange = (previousPrice, currentPrice) => {
 
 axios
   .get(API_URL)
-  .then(function (response) {
+  .then((response) => {
     priceHistory = response.data.data.history
 
     // save only daily price at time "00:00:00"
@@ -73,8 +69,9 @@ axios
     let currPrice = 0
     priceHistoryDaily.forEach((day) => {
       currPrice = day.price
+      // NW: example ES6 destructuring assignment
       let { change, direction } = calculatePriceChange(prevPrice, currPrice)
-
+      // NW: save only required data in specified format
       formattedHistory.push({
         date: moment.utc(day.timestamp).format(),
         price: day.price,
@@ -86,11 +83,12 @@ axios
       prevPrice = currPrice
     })
   })
-  .catch(function (error) {
+  .catch((error) => {
+    // NW: Prepare for failure and ensure detailed log info
     console.log(error)
     throw new Error(error)
   })
-  .then(function () {
+  .then(() => {
     // render stuff
     ReactDOM.render(
       <App coin={BTC_NAME} priceData={formattedHistory} />,

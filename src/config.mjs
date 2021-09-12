@@ -11,6 +11,12 @@ const config = {
     version: '1',
     pricePeriod: '30d',
   },
+  trend: {
+    up: 'Up',
+    down: 'Down',
+    noChange: 'Same',
+    default: '(No Data)',
+  },
 }
 
 export { config }
