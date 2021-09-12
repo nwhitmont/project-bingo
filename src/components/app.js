@@ -53,9 +53,9 @@ class App extends React.Component {
         return priceHistory.map((day, index) => {
             return (
                 <tr key={index} onClick={(e) => this.handleRowClick(day)}>
-                    <td>{moment.utc(day.date).format('M-DD-YYYY')}</td>
+                    <td>{moment.utc(day.date).format()}</td>
                     <td>{day.dayOfWeek}</td>
-                    <td>₿ {day.price}</td>
+                    <td>{day.price}</td>
                     <td>{day.change}</td>
                     <td>{day.direction} {(day.direction == 'Up') ? `🔥` : `😿`}</td>
                 </tr>
@@ -65,14 +65,14 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>🚀 {this.state.coin} Daily 30 Day Index🌛</h1>
                 <table className="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Day</th>
-                            <th>Price</th>
+                            <th>USD Price</th>
                             <th>24hr Change</th>
                             <th>Trend</th>
                         </tr>
