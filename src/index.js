@@ -3,13 +3,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 // COMPONENTS
-import App from './components/app'
+import App from './components/app.jsx'
 import moment from 'moment'
 // CUSTOM CONFIG
 import { config } from './config.mjs'
 const BTC_NAME = config.coin.name
 // NW: See https://developers.coinranking.com/api/documentation for detailed docs
-const API_URL = `https://api.coinranking.com/v${config.api.version}/public/coin/${config.coin.uuid}/history/${config.coin.pricePeriod}`
+const API_URL = `https://api.coinranking.com/v${config.api.version}/public/coin/${config.coin.uuid}/history/${config.api.pricePeriod}`
 const DIRECTION_SYMBOL_UP = 'Up'
 const DIRECTION_SYMBOL_DOWN = 'Down'
 const DIRECTION_SYMBOL_NO_CHANGE = 'Same'

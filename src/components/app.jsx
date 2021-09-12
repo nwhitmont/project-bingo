@@ -1,10 +1,11 @@
 // MODULES
 import React from 'react'
 import moment from 'moment'
+// COMPONENTS
 import PriceTable from './priceTable'
-// CONST
-const DISPLAY_CURRENCY = 'USD'
+import PageTitle from './pageTitle'
 
+// example class component
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -17,7 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <h1>🚀 {this.state.coin} Daily 30 Day Index🌛</h1>
+        <PageTitle coin={this.state.coin} />
         <br />
         <PriceTable coin={this.state.coin} priceData={this.state.priceData} />
       </div>
