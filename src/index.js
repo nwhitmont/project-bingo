@@ -71,16 +71,16 @@ axios
     // format data into required format
     let prevPrice = 0
     let currPrice = 0
-    priceHistoryDaily.forEach((h) => {
-      currPrice = h.price
+    priceHistoryDaily.forEach((day) => {
+      currPrice = day.price
       let { change, direction } = calculatePriceChange(prevPrice, currPrice)
 
       formattedHistory.push({
-        date: moment.utc(h.timestamp).format(),
-        price: h.price,
+        date: moment.utc(day.timestamp).format(),
+        price: day.price,
         direction,
         change,
-        dayOfWeek: moment(h.timestamp).format('dddd'),
+        dayOfWeek: moment(day.timestamp).format('dddd'),
       })
       // NW: save current as previous price for next iteration
       prevPrice = currPrice
