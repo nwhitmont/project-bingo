@@ -9,28 +9,35 @@ class App extends React.Component {
         this.state = {
             coin: props.coin,
             priceData: props.priceData,
-            previousPriceClick: 'n/a'
+            previousPriceClick: 'n/a',
+            useTestJSON: true
         }
     }
 
-    handleRowClick(day) {
+    buildEndpointURL(date, price, previousPriceClicked) {
         // configure fake API request w/ query params
         const domain = 'http://example.com'
         const pathname = '/save_hits'
-        const queryParams = `?priceDate=${day.date}&priceClick=${day.price}&previousPriceClick=${this.state.previousPriceClick}`
+        const queryParams = `?priceDate=${date}&priceClick=${price}&previousPriceClick=${previousPriceClicked}`
 
         // NW: In real-world, the domain would be a working API endpoint
         // Lets pretend like we are generating the endpoint URL, but only use it
         // as long as it's not 'example.com'
-        let analyticsEndpoint = new URL(`${domain}${pathname}${queryParams}`)
+        return new URL(`${domain}${pathname}${queryParams}`)
+    }
+
+    handleRowClick(day) {
+        let analyticsEndpoint = this.buildEndpointURL(day.date, day.price, this.state.previousPriceClick)
 
         // NW: display URL we would have called if it actually was a working endpoint
         console.log('Row CLICKED! Fake Calling endpoint:')
         console.log(analyticsEndpoint.href)
+        alert(`Click would have called: ${analyticsEndpoint}`) //NW: remove for console only debug info
 
         // TODO: Remove this when we have working test endpoint
         // START remove-codeblock
-        if (domain === 'http://example.com') {
+
+        if (this.state.useTestJSON) {
             // NW: use this fake data endpoint so we can demo a working app ;-)
             // Docs: https://jsonplaceholder.typicode.com/
             analyticsEndpoint = 'https://jsonplaceholder.typicode.com/todos/1'
@@ -57,7 +64,7 @@ class App extends React.Component {
                     <td>{day.dayOfWeek}</td>
                     <td>{day.price}</td>
                     <td>{day.change}</td>
-                    <td>{day.direction} {(day.direction == 'Up') ? `🔥` : `😿`}</td>
+                    <td>{(day.direction == 'Up') ? `🔥` : `😿`} {day.direction}</td>
                 </tr>
             )
         })
@@ -72,8 +79,8 @@ class App extends React.Component {
                         <tr>
                             <th>Date</th>
                             <th>Day</th>
-                            <th>USD Price</th>
-                            <th>24hr Change</th>
+                            <th>Price (USD)</th>
+                            <th>24hr Change (USD)</th>
                             <th>Trend</th>
                         </tr>
                     </thead>

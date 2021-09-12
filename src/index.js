@@ -6,7 +6,7 @@ import axios from 'axios'
 import App from './components/app'
 import moment from 'moment'
 // CONSTANTS
-const BTC_UUID = '1'
+const BTC_UUID = '1' // NW: this will change in v2 API available now
 const API_VERSION = '1'
 const PRICE_PERIOD = '30d'
 // NW: See https://developers.coinranking.com/api/documentation for detailed docs
