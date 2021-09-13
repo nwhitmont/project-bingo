@@ -32,7 +32,7 @@ class App extends React.Component {
           />
         </div>
         <PriceTable coin={this.state.coin} priceData={this.state.priceData} />
-        <div class="alert alert-info" role="alert">
+        <div className="alert alert-info" role="alert">
           Bitcoin price data and logo sourced from{' '}
           <a href={API_DOCS_URL} target="_blank">
             Coinranking API

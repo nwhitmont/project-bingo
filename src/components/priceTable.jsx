@@ -79,6 +79,14 @@ class PriceTable extends React.Component {
 
   renderTableData(priceHistory) {
     return priceHistory.map((day, index) => {
+      const formattedPrice = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(day.price)
+      const formattedChange = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }).format(day.change)
       return (
         <tr
           key={index}
@@ -87,8 +95,8 @@ class PriceTable extends React.Component {
         >
           <td>{moment.utc(day.date).format()}</td>
           <td>{day.dayOfWeek}</td>
-          <td>{day.price}</td>
-          <td>{day.change}</td>
+          <td>{formattedPrice}</td>
+          <td>{formattedChange}</td>
           <td>
             {day.direction == 'Up' ? `🔥` : `😿`} {day.direction}
           </td>
