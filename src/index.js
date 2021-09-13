@@ -23,24 +23,9 @@ const calculatePriceChange = (previousPrice, currentPrice) => {
   if (!firstRowSpecialCase) {
     // NW: rows 2-n
     priceChange = currentPrice - previousPrice
-    trendDirection = Math.sign(priceChange)
+    trendDirection = config.trend.get(Math.sign(priceChange))
   }
 
-  // NW: assign up/down symbols by trend
-  switch (trendDirection) {
-    case 1:
-      trendDirection = config.trend.up
-      break
-    case -1:
-      trendDirection = config.trend.down
-      break
-    case 0:
-      trendDirection = config.trend.noChange
-      break
-    default:
-      trendDirection = config.trend.default
-      break
-  }
   if (firstRowSpecialCase) {
     // NW: we handled the special first case, so unset the flag
     firstRowSpecialCase = false

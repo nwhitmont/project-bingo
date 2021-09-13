@@ -1,5 +1,12 @@
 // NW: Example usage of ES6 module as config object
 
+const trend = new Map([
+  [1, 'Up'],
+  [-1, 'Down'],
+  [0, 'Same'],
+  [NaN, '(No Data)'],
+])
+
 const config = {
   coin: {
     name: 'Bitcoin',
@@ -11,12 +18,7 @@ const config = {
     version: '1',
     pricePeriod: '30d',
   },
-  trend: {
-    up: 'Up',
-    down: 'Down',
-    noChange: 'Same',
-    default: '(No Data)',
-  },
+  trend,
 }
 
 export { config }
