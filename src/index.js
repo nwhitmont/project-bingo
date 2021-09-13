@@ -19,29 +19,25 @@ let firstRowSpecialCase = true
 const calculatePriceChange = (previousPrice, currentPrice) => {
   let priceChange = NA_SYMBOL
   let trendDirection = NA_SYMBOL
-
   if (!firstRowSpecialCase) {
     // NW: rows 2-n
     priceChange = currentPrice - previousPrice
+    // NW: a switch statement into a one-liner with the help of Map()
     trendDirection = config.trend.get(Math.sign(priceChange))
   }
-
   if (firstRowSpecialCase) {
     // NW: we handled the special first case, so unset the flag
     firstRowSpecialCase = false
   }
-
   return {
     change: priceChange,
     direction: trendDirection,
   }
 }
-
 axios
   .get(API_URL)
   .then((response) => {
     priceHistory = response.data.data.history
-
     // save only daily price at time "00:00:00"
     let priceHistoryDaily = []
     priceHistory.map((h) => {
@@ -51,7 +47,6 @@ axios
         priceHistoryDaily.push(h)
       }
     })
-
     // format data into required format
     let prevPrice = 0
     let currPrice = 0

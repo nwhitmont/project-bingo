@@ -1,6 +1,5 @@
 // MODULES
 import React from 'react'
-import moment from 'moment'
 // COMPONENTS
 import PriceTable from './PriceTable'
 import PageTitle from './PageTitle'
@@ -18,7 +17,6 @@ class App extends React.Component {
       priceData: props.priceData,
     }
   }
-
   render() {
     return (
       <div className="App container">
