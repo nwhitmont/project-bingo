@@ -1,7 +1,7 @@
 # Bitcoin daily price change index demo project
 
 To run project locally:
-`npm start`
+`npm install && npm start`
 
 Tools:
 
