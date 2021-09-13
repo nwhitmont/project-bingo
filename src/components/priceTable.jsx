@@ -58,10 +58,33 @@ class PriceTable extends React.Component {
       })
   }
 
+  renderPriceTable() {
+    return (
+      <div>
+        <table className="table table-bordered table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col"> Day</th>
+              <th scope="col">Price {DISPLAY_CURRENCY}</th>
+              <th scope="col">24hr Change {DISPLAY_CURRENCY}</th>
+              <th scope="col">Trend</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderTableData(this.state.priceData)}</tbody>
+        </table>
+      </div>
+    )
+  }
+
   renderTableData(priceHistory) {
     return priceHistory.map((day, index) => {
       return (
-        <tr key={index} onClick={(e) => this.handleRowClick(day)}>
+        <tr
+          key={index}
+          className={day.direction == 'Up' ? 'table-success' : 'table-danger'} // example conditional highlight row
+          onClick={(e) => this.handleRowClick(day)}
+        >
           <td>{moment.utc(day.date).format()}</td>
           <td>{day.dayOfWeek}</td>
           <td>{day.price}</td>
@@ -75,20 +98,7 @@ class PriceTable extends React.Component {
   }
 
   render() {
-    return (
-      <table className="table table-striped table-bordered table-hover">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Day</th>
-            <th>Price {DISPLAY_CURRENCY}</th>
-            <th>24hr Change {DISPLAY_CURRENCY}</th>
-            <th>Trend</th>
-          </tr>
-        </thead>
-        <tbody>{this.renderTableData(this.state.priceData)}</tbody>
-      </table>
-    )
+    return this.renderPriceTable()
   }
 }
 

@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 // COMPONENTS
-import App from './components/app.jsx'
+import App from './components/App.jsx'
 import moment from 'moment'
 // CUSTOM CONFIG
 import { config } from './config.mjs'
@@ -26,6 +26,7 @@ const calculatePriceChange = (previousPrice, currentPrice) => {
     trendDirection = Math.sign(priceChange)
   }
 
+  // NW: assign up/down symbols by trend
   switch (trendDirection) {
     case 1:
       trendDirection = config.trend.up
