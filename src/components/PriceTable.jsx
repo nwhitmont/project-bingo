@@ -60,7 +60,7 @@ class PriceTable extends React.Component {
 
   renderPriceTable() {
     return (
-      <div>
+      <div className="table-responsive">
         <table className="table table-bordered table-hover">
           <thead className="thead-dark">
             <tr>
