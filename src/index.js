@@ -56,7 +56,7 @@ axios
       let { change, direction } = calculatePriceChange(prevPrice, currPrice)
       // NW: save only required data in specified format
       formattedHistory.push({
-        date: moment.utc(day.timestamp).format(),
+        date: moment(day.timestamp).format('L'),
         price: day.price,
         direction,
         change,

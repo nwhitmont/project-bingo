@@ -19,7 +19,7 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div className="App container">
+      <div className="container-fluid">
         <header className="App-header">
           <PageTitle coin={this.state.coin} />
         </header>

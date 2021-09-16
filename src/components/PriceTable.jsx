@@ -61,7 +61,7 @@ class PriceTable extends React.Component {
   renderPriceTable() {
     return (
       <div className="table-responsive">
-        <table className="table table-bordered table-hover">
+        <table className="table table-bordered">
           <thead className="thead-dark">
             <tr>
               <th scope="col">Date</th>
@@ -93,7 +93,7 @@ class PriceTable extends React.Component {
           className={day.direction == 'Up' ? 'table-success' : 'table-danger'} // example conditional highlight row
           onClick={(e) => this.handleRowClick(day)}
         >
-          <td>{moment.utc(day.date).format()}</td>
+          <td>{day.date}</td>
           <td>{day.dayOfWeek}</td>
           <td>{formattedPrice}</td>
           <td>{formattedChange}</td>
