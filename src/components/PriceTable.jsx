@@ -1,6 +1,4 @@
 import React from 'react'
-import moment from 'moment'
-const DISPLAY_CURRENCY = 'USD'
 
 class PriceTable extends React.Component {
   constructor(props) {
@@ -66,8 +64,8 @@ class PriceTable extends React.Component {
             <tr>
               <th scope="col">Date</th>
               <th scope="col"> Day</th>
-              <th scope="col">Price {DISPLAY_CURRENCY}</th>
-              <th scope="col">24hr Change {DISPLAY_CURRENCY}</th>
+              <th scope="col">Price</th>
+              <th scope="col">24hr Change</th>
               <th scope="col">Trend</th>
             </tr>
           </thead>

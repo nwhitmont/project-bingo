@@ -31,7 +31,7 @@ class App extends React.Component {
         </div>
         <PriceTable coin={this.state.coin} priceData={this.state.priceData} />
         <div className="alert alert-info" role="alert">
-          Bitcoin price data and logo sourced from{' '}
+          Prices at 00:00:00 GMT || Bitcoin price data and logo sourced from{' '}
           <a href={API_DOCS_URL} target="_blank">
             Coinranking API
           </a>
