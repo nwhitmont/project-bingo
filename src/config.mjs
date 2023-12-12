@@ -15,7 +15,7 @@ const config = {
   },
   displayCurrency: 'USD',
   api: {
-    version: '1',
+    version: '2',
     pricePeriod: '30d',
   },
   trend,
